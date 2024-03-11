@@ -14,19 +14,33 @@ const graphqlResolver = require('./graphql/resolvers');
 const app = express();
 
 const corsOptions = {
-    origin: 'https://homesite-pzw0.onrender.com',
+    origin: 'https://homesite-pzw0.onrender.com/',
     optionsSuccessStatus: 200,
     allowedHeaders: ['Content-Type', 'Authorization']
 };
 
+app.use('/graphql', cors(corsOptions));
+app.use('/images', cors(corsOptions));
+
 app.use(cors(corsOptions));
 app.use(express.json());
+
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    if (req.method === 'OPTIONS') {
+        return res.sendStatus(200);
+    }
+    next();
+});
 
 app.get('/images/:key', (req, res) => {
     const key = req.params.key;
     const readStream = getFile(key);
     readStream.pipe(res);
 });
+
 
 app.post('/images', upload.single('image'), async (req, res) => {
     const file = req.file;
@@ -38,6 +52,7 @@ app.use(auth);
 
 app.use(
     '/graphql',
+    cors(corsOptions),
     graphqlHTTP({
         schema: graphqlSchema,
         rootValue: graphqlResolver,
@@ -46,7 +61,7 @@ app.use(
                 return err;
             }
             const data = err.originalError.data;
-            const message = err.message || 'An error occurred';
+            const message = err.message || 'An error occured';
             const code = err.originalError.code || 500;
             return { message: message, status: code, data: data }
         }
