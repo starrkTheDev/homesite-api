@@ -16,7 +16,7 @@ const app = express();
 const corsOptions = {
     origin: 'https://homesite-pzw0.onrender.com/',
     optionsSuccessStatus: 200,
-    allowedHeaders: ['Content-Type', 'Authorization']
+    allowedHeaders: ['Content-Type', 'Authorization', 'Access-Control-Allow-Headers']
 };
 
 app.use('/graphql', cors(corsOptions));
