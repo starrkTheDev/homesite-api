@@ -70,6 +70,6 @@ app.use(
 mongoose.connect(process.env.MONGODB_URI);
 
 app.listen(() => {
-    console.log('Server is running on port 443');
+    console.log('Server is running on port 443, deployed');
 });
 
