@@ -67,7 +67,9 @@ app.use(
         }
     }));
 
-mongoose.connect(process.env.MONGODB_URI);
+const database = process.env.MONGODB_URI;
+
+mongoose.connect(database);
 
 app.listen(() => {
     console.log('Server is running on port 443, deployed');
