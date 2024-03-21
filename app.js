@@ -69,6 +69,8 @@ app.use(
 
 const database = process.env.MONGODB_URI;
 
+console.log(database);
+
 mongoose.connect(database);
 
 app.listen(() => {
