@@ -69,11 +69,10 @@ app.use(
 
 const database = process.env.MONGODB_URI;
 
-console.log(database);
+const PORT = process.env.PORT || 443
 
-mongoose.connect(database);
-
-app.listen(() => {
-    console.log('Server is running on port 443, deployed');
-});
+mongoose
+  .connect(database)
+  .then(() => app.listen(PORT, () => console.log(Server listening on port ${PORT})))
+  .catch(err => console.log(Error: ${err.message}))
 
