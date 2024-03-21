@@ -14,7 +14,7 @@ const graphqlResolver = require('./graphql/resolvers');
 const app = express();
 
 const corsOptions = {
-    origin: 'https://homesite-pzw0.onrender.com/',
+    origin: '*',
     optionsSuccessStatus: 200,
     allowedHeaders: ['Content-Type', 'Authorization']
 };
