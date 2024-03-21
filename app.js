@@ -73,6 +73,6 @@ const PORT = process.env.PORT || 443
 
 mongoose
   .connect(database)
-  .then(() => app.listen(PORT, () => console.log(Server listening on port ${PORT})))
-  .catch(err => console.log(Error: ${err.message}))
+  .then(() => app.listen(PORT, () => console.log(`Server listening on port ${PORT}`)))
+  .catch(err => console.log(`Error: ${err.message}`))
 
