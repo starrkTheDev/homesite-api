@@ -446,4 +446,13 @@ module.exports = {
         return userPosts;
     },
 
+      getUserName: async function (req) {
+        const user = await User.findById(req.userId);
+        if (!user) {
+            throw new Error('User not found');
+        }
+        console.log(user.name);
+        return user.name;
+    }
+
 };
