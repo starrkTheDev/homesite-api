@@ -160,6 +160,7 @@ module.exports = buildSchema(`
         singlePlotPost(id: ID!): PlotPost!
         getMatchingPosts(searchInput: SearchInput): [SearchPost!]!
         getUserPosts(userId: ID!): [Post!]!
+        getUserName(userId: ID!) : String!
     }
 
     type RootMutation {
